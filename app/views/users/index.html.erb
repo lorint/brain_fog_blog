@@ -1,5 +1,6 @@
 <h1>Here's our bloggers:</h1>
 
 <% @users.each do |u| %>
-	<%= link_to u.email, posts_path(user_id: u.id) %> | <%= u.posts.count %><br />
+	<%= image_tag u.image.url(:thumb) %>
+	<%= link_to u.email, posts_path(user_id: u.id) %> | <%= u.posts.count %> <%= link_to "Edit", edit_user_path(u) %><br />
 <% end %>
