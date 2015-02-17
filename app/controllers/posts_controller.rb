@@ -1,6 +1,14 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    # Let's see if they're passing a user_id to us
+    # in the custom params (the querystring of the URL)
+    if params[:user_id] != nil
+      # Yup, so we'll try to filter by this ID
+      @posts = Post.where(user_id: params[:user_id])
+    else
+      # Nope, so let's just show them ALL posts
+      @posts = Post.all
+    end
   end
 
   def new

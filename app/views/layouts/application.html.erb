@@ -8,6 +8,17 @@
 </head>
 <body>
 
+<%= link_to "List all bloggers", users_path %>
+|
+<% if current_user != nil %>
+	This is the person who's logged in: <%= current_user.email %>
+	|
+	<%= button_to "Log out", sessions_path, method: :delete %>
+<% else %>
+	<%= button_to "Sign up", new_user_path, method: :get %> |
+	<%= link_to "Log in", new_sessions_path %>
+<% end %>
+
 <%= yield %>
 
 </body>
