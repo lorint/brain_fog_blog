@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  resources :posts, only: [:index, :show, :new, :create, :destroy]
+  
+  # Establish a nested route with photos inside of posts
+  resources :posts, only: [:index, :show, :new, :create, :destroy] do
+    resources :photos, only: [:index, :new, :create]
+  end
+
   resources :users, only: [:index, :new, :create, :edit, :update]
   resource :sessions, only: [:new, :create, :destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

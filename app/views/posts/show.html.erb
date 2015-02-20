@@ -1,19 +1,15 @@
 <h1>Posts#show</h1>
 Title: <%= @post.title %><br />
 Content: <%= @post.post_text %>
+<br />
 
-<!-- This is like putting a comments#index right here inside of posts#show!!! -->
-<% @post.comments.each do |c| %>
-	<hr />
-	<%= c.user.email %> said:<br />
-	<%= c.comment_text %>
+<br />
+
+<% @post.photos.each do |p| %>
+	<%= image_tag p.image.url %><br />
 <% end %>
 
-<hr />
+<br />
 
-<!-- This is like having comments#new right here inside of posts#show -->
-<%= form_for @comment do |f| %>
-	<%= f.text_field :comment_text %><br />
-	<%= f.hidden_field :post_id, @post.id %>
-	<%= f.submit %>
-<% end %>
+<%= link_to "Upload photo", new_post_photo_path(@post) %>
+
